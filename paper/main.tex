@@ -7,6 +7,7 @@
 \usepackage{array}
 \usepackage{mathtools}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage{hyperref}
 
@@ -15,7 +16,7 @@
   linkcolor=blue!55!black,
   citecolor=blue!55!black,
   urlcolor=blue!55!black,
-  pdftitle={Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel via Endpoint Moment Bounds},
+  pdftitle={Finite Positivity Certificates and a Cross-Endpoint Obstruction for a Riemann Xi-Defect Kernel},
   pdfauthor={Leonard van Hemert}
 }
 
@@ -31,7 +32,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\dd}{\,\mathrm{d}}
 
-\title[Certified finite positivity bands]{Certified Finite Positivity Bands for a Riemann $\Xi$-Defect Kernel via Endpoint Moment Bounds}
+\title[Finite certificates and a cross-endpoint obstruction]{Finite Positivity Certificates and a Cross-Endpoint Obstruction for a Riemann $\Xi$-Defect Kernel}
 \author{Leonard van Hemert}
 \date{20 July 2026}
 
@@ -46,11 +47,10 @@ C_y(x)&=\iint_{\R^2}(u+v)^2\sinhc(y(u+v))\Phi(u)\Phi(v)\\
 &\hspace{5em}{}\times\cos(x(u-v))\dd u\dd v,
 \qquad 0\leq y\leq\tfrac12.
 \end{align*}
-The Hermite--Biehler defect of $E=\Xi+i\Xi'$ equals $2yC_y(x)$.  We derive
-exact endpoint formulas for the even moments of the positive measure defining
-$C_y$, bound the normalized moments by strict cross-endpoint ratios, and
-integrate a global degree-ten Taylor minorant for cosine.  Outward-rounded
-Arb computation then proves
+The Hermite--Biehler defect of $E=\Xi+i\Xi'$ equals $2yC_y(x)$.  Exact
+endpoint formulas, strict raw-moment monotonicity, and a global Taylor
+minorant for cosine lead to two results.  First, outward-rounded Arb
+computation proves the zero-enumeration-free finite band
 \[
 C_y(x)>0\qquad
 \left(0\leq y\leq\tfrac12,\ |x|\leq R_{10}\right),
@@ -59,10 +59,13 @@ where
 \[
 7.0362433<R_{10}<7.0362434.
 \]
-The certificate uses no zero enumeration.  The result is finite: it neither
-proves the Riemann Hypothesis nor improves existing finite-height zero
-verification.  We identify the unproved all-orders estimate that the
-cross-endpoint method would require for unbounded positivity bands.
+Second, for every fixed $0\leq\varepsilon<1/2$, the initial positivity radii
+of the associated cross-endpoint polynomial hierarchy have finite supremum.
+The proof is analytic: the polynomial sections converge locally uniformly to
+a mixed trigonometric--hyperbolic transform that tends to $-\infty$ on the
+positive real axis.  Thus this fixed endpoint-mismatch mechanism cannot yield
+unbounded positivity bands.  This obstruction does not disprove the Riemann
+Hypothesis and does not apply to every moment or partition method.
 \end{abstract}
 
 \maketitle
@@ -114,12 +117,20 @@ of logarithmic concavity and related moment inequalities \cite{CC2013}, while
 Csordas studied positive-definite associated kernels and isolated global
 positivity conditions equivalent to the Riemann Hypothesis \cite{C2015}.
 
-The contribution here is narrower.  We combine moments at $y=0$ and
-$y=\frac12$ to obtain one explicit polynomial lower bound for a two-variable
-defect kernel, uniformly over the closed $y$-interval.  The endpoint moments
-are values of finite combinations of derivatives of $\xi$ at $0$ and
-$\frac12$, so Arb can certify them without locating zeros.  The first positive
-root of the resulting polynomial gives the stated finite band.
+The first contribution here combines moments at $y=0$ and $y=\frac12$ to
+obtain one explicit polynomial lower bound for a two-variable defect kernel,
+uniformly over the closed $y$-interval.  The endpoint moments are finite
+combinations of derivatives of $\xi$ at $0$ and $\frac12$, so Arb can certify
+them without locating zeros.  The first positive root gives the finite band.
+
+The second contribution determines the fate of the same construction at all
+orders.  For each fixed endpoint mismatch $0\leq\varepsilon<1/2$, the lower
+polynomials converge to an explicit mixed transform.  The hyperbolic part
+coming from $y=1/2$ has a strictly larger coefficient than the part coming
+from $y=\varepsilon$, forcing the limit to $-\infty$.  Consequently the
+certified radii of this hierarchy are bounded.  The conclusion is a no-go
+theorem for this specific lower-polynomial mechanism, not for the Riemann
+Hypothesis or for endpoint moments in general.
 
 The zero consequence is not a record.  Platt and Trudgian rigorously verified
 the Riemann Hypothesis through height $3\cdot10^{12}$ \cite{PT2021}.  The
@@ -179,8 +190,8 @@ Put $s=\frac12-y$ and
 \[
 P(s,x)=\xi(s+ix)\xi(s-ix)=|\Xi(x+iy)|^2.
 \]
-Multiplying the Fourier integrals and symmetrizing under $u\leftrightarrow v$
-and $(u,v)\mapsto(-u,-v)$ gives
+Multiply the Fourier integrals.  Symmetrization under $u\leftrightarrow v$
+and under simultaneous sign reversal of $u$ and $v$ gives
 \begin{equation}\label{eq:P-double}
 P(s,x)=\iint_{\R^2}
 \Phi(u)\Phi(v)\cosh(yp)\cos(xq)\dd u\dd v.
@@ -447,7 +458,7 @@ $R_{10}$.  Then
 R_{10}=7.03624331759098920168\ldots.
 \end{equation}
 
-\begin{theorem}[Certified finite positivity band]\label{thm:main}
+\begin{theorem}[Certified finite positivity band]\label{thm:finite-band}
 For every $0\leq y\leq\frac12$,
 \begin{equation}\label{eq:finite-band}
 C_y(x)>0\qquad(|x|\leq R_{10}).
@@ -482,14 +493,14 @@ $\rho=\beta+i\gamma$ with $\beta<1/2$, then
 z=\gamma+i(1/2-\beta)
 \]
 satisfies $\Xi(z)=\xi(\rho)=0$ and $0<\operatorname{Im}z<1/2$.  For
-$|\gamma|\leq R_{10}$, Theorem \ref{thm:main} and \eqref{eq:defect}
+$|\gamma|\leq R_{10}$, Theorem \ref{thm:finite-band} and \eqref{eq:defect}
 make the defect positive, a contradiction.  If $\beta>1/2$, the functional
 equation and conjugation give the zero $1-\bar\rho$, with the same ordinate
 and real part below $1/2$.
 \end{proof}
 
 At a real zero $x$ of $\Xi$, equation \eqref{eq:C0} becomes
-$C_0(x)=2\Xi'(x)^2$.  Thus Theorem \ref{thm:main} also implies simplicity
+$C_0(x)=2\Xi'(x)^2$.  Thus Theorem \ref{thm:finite-band} also implies simplicity
 of any real $\Xi$-zero in the finite interval, without assuming simplicity.
 
 \section{Failure for a generic positive kernel}
@@ -548,7 +559,7 @@ For $0<\varepsilon\leq1/4$, the same family also satisfies
 so it is not log-concave.  Neither positivity nor rapid decay supplies the
 endpoint ratios in \eqref{eq:B}.
 
-\section{The all-orders boundary}
+\section{The cross-endpoint hierarchy}
 
 The degree-ten theorem does not control the large-frequency sign of $C_y$.
 The exact Taylor hierarchy makes the obstruction precise.  For $m\geq0$ set
@@ -613,19 +624,187 @@ Then
 <S_m(y,x)<\frac{C_y(x)}{A_0(y)}
 \]
 for $x\neq0$ and $\varepsilon\leq y\leq1/2$.  Theorem
-\ref{thm:main} is the case $m=2$, $\varepsilon=0$.
+\ref{thm:finite-band} is the case $m=2$, $\varepsilon=0$.
 
 Let $\widehat R_m^{(\varepsilon)}$ be the initial positivity radius of
-\eqref{eq:Phat}.  The missing all-orders assertion is
-\begin{equation}\label{eq:gap}
-\sup_m\widehat R_m^{(\varepsilon)}=\infty
-\qquad\text{for every }\varepsilon>0.
+\eqref{eq:Phat}, namely the supremum of the initial interval on which it is
+positive.  The next sections show that these radii cannot diverge for any
+fixed $\varepsilon<1/2$.
+
+\section{The exact mixed limit}
+
+For fixed $y\in[0,1/2]$, define the hyperbolic transform
+\begin{equation}\label{eq:G}
+G_y(x)=C_y(ix)=\iint_{\R^2}W_y(u,v)\cosh(xq)\dd u\dd v.
 \end{equation}
-Equation \eqref{eq:gap} would imply the Riemann Hypothesis.  The reverse
-implication is not established: the lower polynomial combines pessimistic
-numerator and denominator endpoints attained at different $y$-values.
-Therefore \eqref{eq:gap} may be stronger than RH.  The present endpoint
-identities do not provide the all-orders asymptotics needed to prove it.
+Although only real $x$ is needed below, $C_y(z)$ is entire in $z$.  Indeed,
+for every $R>0$, estimate \eqref{eq:decay} gives
+\[
+\iint_{\R^2}W_y(u,v)e^{R|q|}\dd u\dd v<\infty
+\]
+uniformly for $0\leq y\leq1/2$.  Dominated convergence therefore gives the
+absolutely and locally uniformly convergent series
+\begin{align}
+C_y(z)&=\sum_{j=0}^{\infty}(-1)^j
+ A_{2j}(y)\frac{z^{2j}}{(2j)!},\label{eq:C-series}\\
+G_y(z)&=\sum_{j=0}^{\infty}
+ A_{2j}(y)\frac{z^{2j}}{(2j)!}.\label{eq:G-series}
+\end{align}
+Separating even and odd values of the index $j$ yields
+\begin{align}
+\sum_{j\ {\rm even}}A_{2j}(y)\frac{x^{2j}}{(2j)!}
+ &=\frac{G_y(x)+C_y(x)}2,\label{eq:even-split}\\
+\sum_{j\ {\rm odd}}A_{2j}(y)\frac{x^{2j}}{(2j)!}
+ &=\frac{G_y(x)-C_y(x)}2.\label{eq:odd-split}
+\end{align}
+
+Fix $0\leq\varepsilon<1/2$ and abbreviate
+\begin{equation}\label{eq:ab}
+a=A_0(\varepsilon),\qquad b=A_0(1/2).
+\end{equation}
+Strict raw-moment monotonicity gives $0<a<b$.
+
+\begin{proposition}[Mixed-limit formula]\label{prop:mixed-limit}
+The polynomials $\widehat P_m^{(\varepsilon)}$ converge locally uniformly on
+$\C$ to
+\begin{equation}\label{eq:mixed-limit}
+F_\varepsilon(x)=1-\frac ab
++\frac{G_\varepsilon(x)+C_\varepsilon(x)}{2b}
+-\frac{G_{1/2}(x)-C_{1/2}(x)}{2a}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply \eqref{eq:even-split} to the positive even-index sum in
+\eqref{eq:Phat} and \eqref{eq:odd-split} to its negative odd-index sum.
+The $j=0$ term of the former is $a/b$, whereas the constant term of
+$\widehat P_m^{(\varepsilon)}$ is defined to be one.  This produces the
+essential correction $1-a/b$.  Local uniform convergence follows from
+\eqref{eq:C-series}--\eqref{eq:G-series}.
+\end{proof}
+
+\section{Fixed endpoint mismatch forces bounded radii}
+
+\begin{lemma}[Hyperbolic growth]\label{lem:hyperbolic-growth}
+For each fixed $0\leq\varepsilon<1/2$, there are $c,\delta>0$ such that
+\[
+G_\varepsilon(x)\geq c\cosh(\delta x)\qquad(x\geq0).
+\]
+In particular, $G_\varepsilon(x)\to+\infty$ as $x\to+\infty$.
+\end{lemma}
+
+\begin{proof}
+The density $W_\varepsilon$ is continuous and positive away from the null
+line $u+v=0$.  Choose a compact rectangle on which $W_\varepsilon>0$ and
+$|u-v|\geq\delta$ for some $\delta>0$.  Its $W_\varepsilon$-mass $c$ is
+positive.  Restricting \eqref{eq:G} to this rectangle gives the bound.
+\end{proof}
+
+\begin{theorem}[Cross-endpoint obstruction]\label{thm:obstruction}
+For every fixed $0\leq\varepsilon<1/2$,
+\begin{equation}\label{eq:bounded-radii}
+\sup_{m\geq0}\widehat R_m^{(\varepsilon)}<\infty.
+\end{equation}
+This statement is unconditional and does not assume the Riemann Hypothesis.
+\end{theorem}
+
+\begin{proof}
+For each fixed real $p$, the function $y\mapsto\sinhc(yp)$ is increasing on
+$[0,\infty)$.  Therefore
+\[
+W_{1/2}(u,v)\geq W_\varepsilon(u,v),
+\qquad G_{1/2}(x)\geq G_\varepsilon(x)\quad(x\in\R).
+\]
+Positivity of the measures also gives $|C_y(x)|\leq A_0(y)$.  Formula
+\eqref{eq:mixed-limit} consequently implies
+\begin{equation}\label{eq:mixed-upper}
+F_\varepsilon(x)
+\leq 1-\frac ab+\frac{a}{2b}+\frac{b}{2a}
+-\frac{b-a}{2ab}G_\varepsilon(x).
+\end{equation}
+The last coefficient is strictly negative because $a<b$, and Lemma
+\ref{lem:hyperbolic-growth} shows that the final term tends to $-\infty$.
+Hence $F_\varepsilon(x)\to-\infty$ as $x\to+\infty$.
+
+Choose $X>0$ with $F_\varepsilon(X)<0$.  Proposition
+\ref{prop:mixed-limit} gives
+$\widehat P_m^{(\varepsilon)}(X)<0$ for every sufficiently large $m$, so
+$\widehat R_m^{(\varepsilon)}\leq X$ for those $m$.  Each remaining
+polynomial starts at one and has highest Taylor index $j=2m+1$, hence a
+strictly negative leading coefficient.  It tends to $-\infty$ and has a
+finite first positive zero.  Taking the maximum of $X$ and the finitely many
+exceptional radii proves \eqref{eq:bounded-radii}.
+\end{proof}
+
+\begin{remark}[Endpoint distinction]\label{rem:endpoint}
+The proof includes $\varepsilon=0$: $W_0=p^2\Phi(u)\Phi(v)$ is the continuous
+endpoint weight and $A_0(0)>0$.  At $\varepsilon=1/2$, however, $a=b$ and
+the coercive coefficient in \eqref{eq:mixed-upper} vanishes.  Then
+\eqref{eq:mixed-limit} reduces to the exact normalized cosine transform.
+The obstruction theorem neither proves nor disproves its global positivity.
+\end{remark}
+
+\section{Partitions and the RH-equivalence boundary}
+
+On every fixed positive-width cell $[\alpha,\beta]\subset[0,1/2]$, using
+positive coefficients from $\alpha$ and negative coefficients from $\beta$
+repeats the proof of Theorem \ref{thm:obstruction}.  Thus a fixed finite
+partition improves finite constants but does not remove endpoint mismatch.
+
+Mesh refinement is different.  At fixed degree, continuity of the finitely
+many moments makes the cellwise bounds converge to the exact Taylor section.
+If degree and mesh are allowed to vary diagonally so that positivity is
+certified on every compact rectangle
+$[\varepsilon,1/2]\times[-R,R]$, Proposition
+\ref{prop:exact-hierarchy} yields global open-strip defect positivity.
+Through Lemma \ref{lem:defect} this is the Hermite--Biehler condition
+equivalent to RH.  Such a diagonal assertion is therefore not an established
+intermediate theorem; it reaches the original unresolved global condition.
+
+Theorem \ref{thm:obstruction} blocks the fixed cross-endpoint hierarchy only.
+It does not block exact moment sections.  Nor does it block adaptive schemes
+with a new uniform estimate, or other approaches to RH.
+
+\section{Higher-degree certified computation}
+
+The analytic proof above is independent of numerical experimentation.  For
+reproducibility and finite-scale diagnosis, an independent Arb implementation
+nevertheless computed all 175 requested cases
+\[
+m=0,\ldots,20,25,30,40,50,
+\qquad
+\varepsilon\in\{0,1/4,1/8,1/16,1/32,10^{-2},10^{-3}\}.
+\]
+It certified 816 endpoint moments through $A_{202}$, an exact dyadic bracket
+for every first positive root, and interval-Horner monotonicity up to that
+root.  The successful full run used 700 decimal digits, a series cap of 205,
+120 root-bisection bits, about $3.74$ seconds wall time, and approximately
+$41.1$ MB maximum resident memory.  A 900-digit recomputation encloses every
+degree-202 result.  The retained 180-digit run fails at $A_{120}(1/2)$ with
+an indeterminate ball; it is recorded rather than suppressed.
+
+At $m=50$, the extreme certified lower root endpoints are
+\[
+7.5367678370859\ldots\quad(\varepsilon=0),\qquad
+7.7563175645352\ldots\quad(\varepsilon=1/4).
+\]
+These are finite certificates, not the proof of boundedness.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.92\textwidth]{../research/high_degree/radii.png}
+\caption{Certified initial positivity radii for the computed degrees and
+endpoint choices.  The plotted finite data diagnose the hierarchy but do not
+establish an asymptotic law.  Theorem \ref{thm:obstruction} follows instead
+from the exact mixed limit.}
+\label{fig:radii}
+\end{figure}
+
+The clean-room program independently reconstructs the degree-10 endpoint
+identities and root bracket.  A second implementation checks derivative
+indexing, series caps, endpoint ratios, large-argument polynomial evaluation,
+and precision loss as $\varepsilon\to0$.  These are internal reproducibility
+and adversarial checks, not independent peer review.
 
 \section{Reproducibility and certificate scope}
 
@@ -656,17 +835,48 @@ uv run --with python-flint==0.9.0 \
   python code/theta_moment_certificate.py
 \end{verbatim}
 Python optimization must remain disabled because program assertions encode
-the sign obligations.
+the sign obligations.  The higher-degree records and their independent
+checks are reproduced by
+\begin{verbatim}
+uv run --with python-flint==0.9.0 \
+  python research/high_degree/verify_results.py
+PYTHONPATH=research/adversarial \
+  uv run --with python-flint==0.9.0 \
+  python -m unittest -v \
+  research/adversarial/test_adversarial.py
+\end{verbatim}
+
+The dependency structure is:
+\begin{enumerate}
+\item the standard functional equation and Jacobi theta transformation give
+      \eqref{eq:fourier}, positivity, and decay of $\Phi$;
+\item those facts give absolute convergence, Lemmas
+      \ref{lem:defect}--\ref{lem:cosine}, and the endpoint moments;
+\item the finite Arb enclosures plus these analytic lemmas give Theorem
+      \ref{thm:finite-band};
+\item decay alone gives the entire series and Proposition
+      \ref{prop:mixed-limit};
+\item positivity, strict endpoint monotonicity, and the mixed limit give
+      Theorem \ref{thm:obstruction};
+\item no numerical radius, zero list, RH assumption, zero-simplicity
+      assumption, or saddle-point heuristic enters the obstruction theorem.
+\end{enumerate}
 
 \section{Conclusion}
 
 Endpoint derivatives of $\xi$ at $0$ and $1/2$, strict monotonicity of raw
 moments, and a global cosine minorant produce an explicit lower polynomial for
 $C_y/A_0$.  Arb certification of its coefficients and root proves the closed
-finite band in Theorem \ref{thm:main}.  The argument supplies a reproducible
-local validation of the endpoint-moment method.  It does not control the
-all-orders radii in \eqref{eq:gap}, which remain the first unresolved step
-toward unbounded open-strip positivity.
+finite band in Theorem \ref{thm:finite-band}.  At arbitrary degree, however,
+fixed cross-endpoint normalization creates an imbalanced hyperbolic term.
+The exact mixed limit tends to $-\infty$, and Theorem
+\ref{thm:obstruction} proves that the resulting positivity radii remain
+bounded for every fixed $\varepsilon<1/2$.
+
+Thus the finite certificate is valid, while its fixed endpoint-mismatch
+extension cannot prove RH.  This is not a theorem against RH, exact moment
+sections, or every adaptive partition method.  The remaining global
+open-strip positivity problem is unchanged and RH-equivalent.
 
 \section*{Disclosure and licensing}
 
@@ -678,6 +888,7 @@ All rights reserved; full terms appear in the repository \texttt{NOTICE}.
 Repository software and certification scripts are AGPL-3.0-only.
 
 \begin{thebibliography}{99}
+\small
 
 \bibitem{C2015}
 G. Csordas,

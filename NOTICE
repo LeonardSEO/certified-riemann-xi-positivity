@@ -1,4 +1,4 @@
-Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel
+Finite Positivity Certificates and a Cross-Endpoint Obstruction for a Riemann Xi-Defect Kernel
 Copyright (c) 2026 Leonard van Hemert
 
 LICENSE MAP
@@ -38,5 +38,7 @@ LICENSE MAP
 
 SCOPE OF THE RESULT
 
-The repository proves a certified finite positivity band. It does not claim a
-proof of the Riemann Hypothesis or a new record for finite-height verification.
+The repository proves a certified finite positivity band and an analytic
+bounded-radius obstruction for its fixed cross-endpoint polynomial hierarchy.
+It does not claim a proof of the Riemann Hypothesis or a new record for
+finite-height verification.

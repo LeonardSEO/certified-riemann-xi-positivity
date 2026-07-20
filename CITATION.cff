@@ -1,11 +1,11 @@
 cff-version: 1.2.0
-message: "Please cite the article and exact repository revision. Scholarly materials are all rights reserved; see NOTICE."
-title: "Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel via Endpoint Moment Bounds"
-type: article
+message: "Please cite the article in preferred-citation and the exact repository revision. Rights differ by material; see NOTICE."
+title: "Certified Riemann Xi Positivity Research Software and Artifacts"
+type: software
 authors:
   - family-names: "van Hemert"
     given-names: "Leonard"
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-07-20
 repository-code: "https://github.com/LeonardSEO/certified-riemann-xi-positivity"
 url: "https://github.com/LeonardSEO/certified-riemann-xi-positivity/blob/main/paper/main.pdf"
@@ -15,7 +15,23 @@ keywords:
   - interval arithmetic
   - Hermite-Biehler theory
   - moment inequalities
+  - cross-endpoint obstruction
 abstract: >-
-  A degree-10 endpoint-moment construction gives a zero-enumeration-free,
-  interval-certified finite positivity band for a Riemann Xi defect kernel.
-  The result is finite and does not prove the Riemann Hypothesis.
+  Reproducible Arb and FLINT software, interval certificates, and research
+  artifacts for finite positivity bands and a fixed cross-endpoint
+  obstruction associated with a Riemann Xi defect kernel.
+preferred-citation:
+  type: article
+  title: "Finite Positivity Certificates and a Cross-Endpoint Obstruction for a Riemann Xi-Defect Kernel"
+  authors:
+    - family-names: "van Hemert"
+      given-names: "Leonard"
+  year: 2026
+  url: "https://github.com/LeonardSEO/certified-riemann-xi-positivity/blob/main/paper/main.pdf"
+  abstract: >-
+    A degree-10 endpoint-moment construction gives a zero-enumeration-free,
+    interval-certified finite positivity band for a Riemann Xi defect kernel.
+    For every fixed endpoint mismatch below one half, an exact mixed-transform
+    limit proves that the associated cross-endpoint polynomial radii have
+    finite supremum. The results do not prove the Riemann Hypothesis.
+  copyright: "Copyright (c) 2026 Leonard van Hemert. All rights reserved."

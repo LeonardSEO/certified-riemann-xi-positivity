@@ -1,51 +1,63 @@
-# Certified finite positivity bands for a Riemann Xi-defect kernel
+# Finite positivity certificates and a cross-endpoint obstruction
 
 This repository contains a scientific paper and a reproducible Arb/FLINT
-certificate for a finite positivity theorem associated with the Riemann Xi
-function.
+certificate study for a defect kernel associated with the Riemann Xi
+function. The paper contains a finite positivity theorem and an analytic
+obstruction to scaling its fixed cross-endpoint hierarchy.
 
 ## Result
 
 Let
 
-\[
+$$
 \Xi(z)=\xi\!\left(\frac12+iz\right)
       =\int_{\mathbb R}\Phi(u)e^{izu}\,du
-\]
+$$
 
 and, for `0 <= y <= 1/2`, define
 
-\[
+$$
 C_y(x)=\iint_{\mathbb R^2}
 (u+v)^2\operatorname{sinhc}(y(u+v))
 \Phi(u)\Phi(v)\cos(x(u-v))\,du\,dv.
-\]
+$$
 
 The degree-10 endpoint-moment certificate proves
 
-\[
+$$
 C_y(x)>0
 \qquad
 \left(0\le y\le\frac12,\ |x|\le R_{10}\right),
-\]
+$$
 
 where
 
-\[
+$$
 7.0362433<R_{10}<7.0362434.
-\]
+$$
 
 The proof does not enumerate zeros. It combines exact endpoint formulas for
 Riemann-kernel moments, strict raw-moment monotonicity, a global degree-10
 minorant for cosine, and outward-rounded Arb evaluation.
 
-## Scope
+The same paper proves that, for every fixed `0 <= epsilon < 1/2`, the initial
+positivity radii of the specified cross-endpoint polynomials satisfy
 
-This is a finite, classification-C theorem. It does not prove the Riemann
-Hypothesis and does not improve the largest known finite height through which
-researchers have verified RH. The open problem for this method is an
-all-orders estimate that forces the positivity radii of the cross-endpoint
-minorants to grow without bound.
+```text
+sup_m Rhat_m^(epsilon) < infinity.
+```
+
+The second theorem is analytic and independent of the finite computations.
+The polynomial sections converge locally uniformly to an exact mixed
+trigonometric-hyperbolic transform that tends to minus infinity.
+
+## Scope and classification
+
+The finite band is a classification-C result. The bounded-radius theorem is a
+classification-E result: it blocks the fixed cross-endpoint polynomial route,
+not the Riemann Hypothesis, exact moment sections, or every adaptive partition
+method. Neither theorem proves RH or improves the largest known finite height
+through which researchers have verified RH.
 
 ## Files
 
@@ -58,6 +70,10 @@ minorants to grow without bound.
 - [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md): exact reproduction steps and
   certificate scope.
 - [`certificates/SHA256SUMS`](certificates/SHA256SUMS): release-artifact hashes.
+- [`research/high_degree/radii.png`](research/high_degree/radii.png): graph of
+  the certified finite radii; illustrative only, not the obstruction proof.
+- [`research/README.md`](research/README.md): higher-degree records, analytic
+  proof supplements, independent implementations, and audit registry.
 
 ## Quick verification
 
@@ -75,15 +91,14 @@ ALL CERTIFICATE ASSERTIONS PASSED
 
 Do not run Python with `-O`; assertions form part of the certificate.
 
-## Higher-degree investigation
+## Higher-degree verification
 
-The follow-up investigation is in [`research/`](research/). Its principal
-classification is **E — cross-endpoint route blocked**: for every fixed
-`0 <= epsilon < 1/2`, the stated cross-endpoint radii have a finite supremum.
-The proof, all 175 certified higher-degree cases through degree 202, the
+The supporting investigation in [`research/`](research/) contains all 175
+certified higher-degree cases through degree 202, 816 endpoint moments,
 independent clean-room and adversarial implementations, partition results,
-minorant experiments, graph, failures, and reproduction commands are indexed
-in [`research/README.md`](research/README.md). The paper itself is unchanged.
+minorant experiments, retained failures, the graph, and exact reproduction
+commands. The authoritative paper now integrates both the finite theorem and
+the analytic cross-endpoint obstruction.
 
 ## Licensing
 

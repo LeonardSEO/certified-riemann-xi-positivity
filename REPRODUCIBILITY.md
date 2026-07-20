@@ -54,6 +54,8 @@ latexmk -pdf -interaction=nonstopmode -halt-on-error -outdir=paper/build paper/m
 ```
 
 Copy `paper/build/main.pdf` to `paper/main.pdf` after a successful build.
+The build must retain the repository layout because the article includes
+`research/high_degree/radii.png` by relative path.
 
 ## What the certificate proves
 
@@ -62,3 +64,22 @@ the Bernstein coefficients of the derivative polynomial on `0 <= t <= 51`,
 the shifted power coefficients for `t >= 51`, and the two rational root-bracket
 signs. The analytic identities connecting those quantities to the Riemann
 theta kernel appear in the paper and are not delegated to the program.
+
+## Higher-degree and obstruction study
+
+The bounded-radius theorem in the paper is analytic and does not depend on
+the computed radii. The supporting interval records cover 175 cases and 816
+endpoint moments through `A_202`. Verify them and the independent adversarial
+implementation with:
+
+```bash
+uv run --with python-flint==0.9.0 \
+  python research/high_degree/verify_results.py
+PYTHONPATH=research/adversarial uv run --with python-flint==0.9.0 \
+  python -m unittest -v research/adversarial/test_adversarial.py
+```
+
+The clean-room reconstruction, global-minorant calculation, and partition
+certificate have exact commands in `research/README.md`. Their committed
+inputs and outputs are covered by `research/SHA256SUMS` and
+`research/high_degree/SHA256SUMS`.
