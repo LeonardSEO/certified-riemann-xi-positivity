@@ -45,7 +45,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install --yes --no-install-recommends \
-            latexmk texlive-fonts-recommended texlive-latex-extra texlive-science
+            latexmk lmodern texlive-fonts-recommended texlive-latex-extra texlive-science
 
       - name: Compile the paper
         working-directory: paper

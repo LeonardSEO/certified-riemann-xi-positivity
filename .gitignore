@@ -13,6 +13,7 @@ paper/build/
 *.fls
 *.log
 *.out
+!certificates/*.out
 *.synctex.gz
 *.toc
 
