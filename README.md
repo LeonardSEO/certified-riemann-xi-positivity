@@ -1,5 +1,7 @@
 # Finite positivity certificates and a cross-endpoint obstruction
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21455363.svg)](https://doi.org/10.5281/zenodo.21455363)
+
 This repository contains a scientific paper and a reproducible Arb/FLINT
 certificate study for a defect kernel associated with the Riemann Xi
 function. The paper contains a finite positivity theorem and an analytic
