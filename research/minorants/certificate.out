@@ -1,0 +1,28 @@
+GLOBAL VALIDITY CERTIFICATE
+For n=4m+2, (cos-T_n)^(n)=1-cos>=0 and the first n derivatives
+at zero vanish. Repeated integration and evenness prove T_n<=cos on R.
+Fixed finite convex combinations preserve the inequality. This part is exact, not numeric.
+python-flint=0.9.0 FLINT=3.6.0 dps=80 cap=56
+
+CROSS-ENDPOINT TAYLOR HIERARCHY
+m= 0 degree= 2 radius=[4.89087659,4.89087664] positive_Bernstein_leaves=1
+m= 1 degree= 6 radius=[6.14999148,6.14999153] positive_Bernstein_leaves=1
+m= 2 degree=10 radius=[7.03624329,7.03624334] positive_Bernstein_leaves=1
+m= 3 degree=14 radius=[7.46139709,7.46139714] positive_Bernstein_leaves=1
+m= 4 degree=18 radius=[7.53283218,7.53283223] positive_Bernstein_leaves=1
+m= 5 degree=22 radius=[7.53665519,7.53665524] positive_Bernstein_leaves=1
+m= 6 degree=26 radius=[7.53676566,7.53676571] positive_Bernstein_leaves=1
+m= 7 degree=30 radius=[7.53676778,7.53676783] positive_Bernstein_leaves=1
+m= 8 degree=34 radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+m= 9 degree=38 radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+m=10 degree=42 radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+m=11 degree=46 radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+m=12 degree=50 radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+
+BEST PAIRWISE CONVEX MIX ON THE 1/100 WEIGHT GRID
+weight(T_42)=1/100; weight(T_46)=99/100
+radius=[7.53676781,7.53676786] positive_Bernstein_leaves=1
+The search is finite and heuristic; global minorant validity and the displayed
+positivity/root bracket for the selected rational mix are Arb-certified.
+
+ALL CERTIFICATE ASSERTIONS PASSED
