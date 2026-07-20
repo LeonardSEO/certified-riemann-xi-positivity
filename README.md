@@ -87,9 +87,11 @@ in [`research/README.md`](research/README.md). The paper itself is unchanged.
 
 ## Licensing
 
-- Software and automation: GNU AGPL v3.0 only. See [`LICENSE`](LICENSE).
-- Paper, LaTeX source, and original figures: CC BY-SA 4.0. See
-  [`LICENSES/CC-BY-SA-4.0.txt`](LICENSES/CC-BY-SA-4.0.txt).
+- Software and certification scripts: GNU AGPL v3.0 only. See
+  [`LICENSE`](LICENSE).
+- Papers, manuscripts, LaTeX sources, figures, tables, and supplementary
+  scholarly materials: Copyright (c) 2026 Leonard van Hemert. All rights
+  reserved. See [`NOTICE`](NOTICE) for the full terms and scope.
 
 Copyright (c) 2026 Leonard van Hemert.
 

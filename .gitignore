@@ -21,5 +21,6 @@ paper/build/
 # Local ChatGPT-project material that is not part of the publication
 AGENTS.md
 sources/
+/docs/
 tmp/
 round5_interval_certificate.py

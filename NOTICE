@@ -10,13 +10,20 @@ LICENSE MAP
    version 3 only (SPDX: AGPL-3.0-only). The complete license text is in
    `LICENSE`.
 
-2. Paper
+2. Scholarly materials
 
-   The files under `paper/`, including the article text, LaTeX source, and
-   original figures, are licensed under Creative Commons
-   Attribution-ShareAlike 4.0 International (SPDX: CC-BY-SA-4.0). The license
-   notice and official legal-code link are in
-   `LICENSES/CC-BY-SA-4.0.txt`.
+   Papers, manuscripts, LaTeX sources, figures, tables, and supplementary
+   scholarly materials:
+
+   Copyright (c) 2026 Leonard van Hemert. All rights reserved.
+
+   No permission is granted to reproduce, redistribute, modify, translate,
+   publish, commercially exploit, or create derivative works from these
+   materials without prior written permission, except as permitted by
+   applicable law.
+
+   Academic citation and quotation in accordance with applicable law and
+   scholarly standards are permitted.
 
 3. Research facts
 
@@ -26,8 +33,8 @@ LICENSE MAP
 
 4. Attribution
 
-   Cite the article using `CITATION.cff`. Mark modified versions and preserve
-   the applicable copyright and license notices.
+   Cite the article using `CITATION.cff` and preserve the applicable copyright
+   and license notices.
 
 SCOPE OF THE RESULT
 

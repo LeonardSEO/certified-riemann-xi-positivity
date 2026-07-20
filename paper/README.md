@@ -3,8 +3,9 @@
 `main.tex` is the source of the scientific article. `main.pdf` is the compiled
 release artifact.
 
-The paper material is licensed under CC BY-SA 4.0. See
-`../LICENSES/CC-BY-SA-4.0.txt`.
+The paper, LaTeX source, figures, tables, and supplementary scholarly material
+are Copyright (c) 2026 Leonard van Hemert. All rights reserved. See
+`../NOTICE` for the full terms and scope.
 
 Build with TeX Live:
 

@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this work, please cite the article and archive the exact repository revision."
+message: "Please cite the article and exact repository revision. Scholarly materials are all rights reserved; see NOTICE."
 title: "Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel via Endpoint Moment Bounds"
 type: article
 authors:
@@ -9,7 +9,6 @@ version: 0.1.0
 date-released: 2026-07-20
 repository-code: "https://github.com/LeonardSEO/certified-riemann-xi-positivity"
 url: "https://github.com/LeonardSEO/certified-riemann-xi-positivity/blob/main/paper/main.pdf"
-license: CC-BY-SA-4.0
 keywords:
   - Riemann Xi function
   - certified numerics
