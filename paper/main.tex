@@ -1,0 +1,725 @@
+\documentclass[11pt]{amsart}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel via Endpoint Moment Bounds},
+  pdfauthor={Leonard van Hemert}
+}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\sinhc}{\operatorname{sinhc}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\dd}{\,\mathrm{d}}
+
+\title[Certified finite positivity bands]{Certified Finite Positivity Bands for a Riemann $\Xi$-Defect Kernel via Endpoint Moment Bounds}
+\author{Leonard van Hemert}
+\date{20 July 2026}
+
+\begin{document}
+
+\begin{abstract}
+Let $\Xi(z)=\xi(\frac12+iz)$ and let $\Phi$ denote the positive even
+Riemann theta kernel in its full-line Fourier representation.  We study the
+two-variable cosine transform
+\[
+C_y(x)=\iint_{\R^2}(u+v)^2\sinhc(y(u+v))\Phi(u)\Phi(v)
+                 \cos(x(u-v))\dd u\dd v,
+\qquad 0\leq y\leq\tfrac12.
+\]
+The Hermite--Biehler defect of $E=\Xi+i\Xi'$ equals $2yC_y(x)$.  We derive
+exact endpoint formulas for the even moments of the positive measure defining
+$C_y$, bound the normalized moments by strict cross-endpoint ratios, and
+integrate a global degree-ten Taylor minorant for cosine.  Outward-rounded
+Arb computation then proves
+\[
+C_y(x)>0\qquad
+\left(0\leq y\leq\tfrac12,\ |x|\leq R_{10}\right),
+\]
+where
+\[
+7.0362433<R_{10}<7.0362434.
+\]
+The certificate uses no zero enumeration.  The result is finite: it neither
+proves the Riemann Hypothesis nor improves existing finite-height zero
+verification.  We identify the unproved all-orders estimate that the
+cross-endpoint method would require for unbounded positivity bands.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+Write
+\begin{equation}\label{eq:xi-definition}
+\xi(s)=\frac12s(s-1)\pi^{-s/2}\Gamma(s/2)\zeta(s),
+\qquad
+\Xi(z)=\xi\!\left(\frac12+iz\right).
+\end{equation}
+The completed function satisfies
+\begin{equation}\label{eq:functional-equation}
+\xi(s)=\xi(1-s),
+\end{equation}
+and $\Xi$ is real entire and even.  The Jacobi transformation gives the
+full-line representation
+\begin{equation}\label{eq:fourier}
+\Xi(z)=\int_{\R}\Phi(u)e^{izu}\dd u,
+\end{equation}
+where, in the normalization used here,
+\begin{equation}\label{eq:phi}
+\Phi(u)=\sum_{n=1}^{\infty}
+\left(4\pi^2n^4e^{9|u|/2}-6\pi n^2e^{5|u|/2}\right)
+e^{-\pi n^2e^{2|u|}}.
+\end{equation}
+For $u\geq0$, each summand is positive because
+\[
+4\pi^2n^4e^{9u/2}-6\pi n^2e^{5u/2}
+=2\pi n^2e^{5u/2}\left(2\pi n^2e^{2u}-3\right)>0.
+\]
+The Jacobi transformation makes the extension in \eqref{eq:phi} even and
+smooth.  The kernel also satisfies a bound
+\begin{equation}\label{eq:decay}
+0<\Phi(u)\leq C e^{9|u|/2}
+\exp\!\left(-\frac{\pi}{2}e^{2|u|}\right)
+\end{equation}
+for a fixed $C>0$.
+
+Moment inequalities, Fourier criteria, and Hermite--Biehler formulations for
+$\Xi$ have a substantial history.  Csordas, Norfolk, and Varga proved
+P\'olya--Tur\'an inequalities for Taylor coefficients \cite{CNV1986}.
+Csordas and Varga proved strict concavity of
+$t\mapsto\log\Phi(\sqrt t)$ and obtained broad moment inequalities
+\cite{CV1988}.  Their later work developed Hermite--Biehler and generalized
+Laguerre criteria \cite{CV1989,CV1990}.  Coffey and Csordas gave another proof
+of logarithmic concavity and related moment inequalities \cite{CC2013}, while
+Csordas studied positive-definite associated kernels and isolated global
+positivity conditions equivalent to the Riemann Hypothesis \cite{C2015}.
+
+The contribution here is narrower.  We combine moments at $y=0$ and
+$y=\frac12$ to obtain one explicit polynomial lower bound for a two-variable
+defect kernel, uniformly over the closed $y$-interval.  The endpoint moments
+are values of finite combinations of derivatives of $\xi$ at $0$ and
+$\frac12$, so Arb can certify them without locating zeros.  The first positive
+root of the resulting polynomial gives the stated finite band.
+
+The zero consequence is not a record.  Platt and Trudgian rigorously verified
+the Riemann Hypothesis through height $3\cdot10^{12}$ \cite{PT2021}.  The
+interest of the present result lies in the moment certificate and its uniform
+kernel inequality, rather than the small numerical height of the corollary.
+
+\section{The defect kernel}
+
+Set
+\[
+\sinhc t=
+\begin{cases}
+\sinh(t)/t,&t\neq0,\\
+1,&t=0.
+\end{cases}
+\]
+For $p=u+v$ and $q=u-v$, define
+\begin{equation}\label{eq:W}
+W_y(u,v)=p^2\sinhc(yp)\Phi(u)\Phi(v),
+\qquad 0\leq y\leq\frac12,
+\end{equation}
+and
+\begin{equation}\label{eq:C}
+C_y(x)=\iint_{\R^2}W_y(u,v)\cos(xq)\dd u\dd v.
+\end{equation}
+For $y>0$, this equals the form
+\[
+C_y(x)=\iint_{\R^2}
+\frac{p\sinh(yp)}{y}\Phi(u)\Phi(v)\cos(xq)\dd u\dd v.
+\]
+
+Estimate \eqref{eq:decay} shows that
+\[
+|p|^a|q|^b e^{|p|/2}\Phi(u)\Phi(v)
+\]
+is integrable for every fixed pair of nonnegative integers $a,b$.  Thus all
+integrals and derivatives used below converge absolutely and locally
+uniformly.  Fubini's theorem, differentiation under the integral, and the
+limits at $y=0$ and $y=\frac12$ are valid.
+
+\begin{lemma}[Defect identity]\label{lem:defect}
+Let
+\[
+E(z)=\Xi(z)+i\Xi'(z),
+\qquad
+E^{\#}(z)=\overline{E(\bar z)}.
+\]
+Then
+\begin{equation}\label{eq:defect}
+|E(x+iy)|^2-|E^{\#}(x+iy)|^2=2yC_y(x)
+\end{equation}
+for real $x$ and $0\leq y\leq\frac12$.
+\end{lemma}
+
+\begin{proof}
+Put $s=\frac12-y$ and
+\[
+P(s,x)=\xi(s+ix)\xi(s-ix)=|\Xi(x+iy)|^2.
+\]
+Multiplying the Fourier integrals and symmetrizing under $u\leftrightarrow v$
+and $(u,v)\mapsto(-u,-v)$ gives
+\begin{equation}\label{eq:P-double}
+P(s,x)=\iint_{\R^2}
+\Phi(u)\Phi(v)\cosh(yp)\cos(xq)\dd u\dd v.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:Py}
+\frac{\partial P}{\partial y}(s,x)
+=\iint p\sinh(yp)\Phi(u)\Phi(v)\cos(xq)\dd u\dd v
+=yC_y(x).
+\end{equation}
+
+Because $\Xi$ is real entire,
+$E^{\#}=\Xi-i\Xi'$.  Direct expansion yields
+\[
+|E|^2-|E^{\#}|^2
+=-4\operatorname{Im}(\Xi'\overline{\Xi})
+=2\frac{\partial}{\partial y}|\Xi(x+iy)|^2.
+\]
+Equation \eqref{eq:Py} proves \eqref{eq:defect}.
+\end{proof}
+
+At $y=0$, differentiation of \eqref{eq:Py} gives
+\begin{equation}\label{eq:C0}
+C_0(x)=2\left(\Xi'(x)^2-\Xi(x)\Xi''(x)\right).
+\end{equation}
+
+\section{Endpoint moments}
+
+For $j\geq0$, define the raw moments
+\begin{equation}\label{eq:A}
+A_{2j}(y)=\iint_{\R^2}W_y(u,v)q^{2j}\dd u\dd v.
+\end{equation}
+Then
+\begin{equation}\label{eq:C-derivatives}
+C_y^{(2j)}(0)=(-1)^jA_{2j}(y),
+\end{equation}
+and $A_{2j}(y)>0$.
+
+Define
+\begin{equation}\label{eq:H}
+H_{2j}(s)=\sum_{\ell=0}^{2j}(-1)^\ell
+\binom{2j}{\ell}\xi^{(\ell)}(s)\xi^{(2j-\ell)}(s).
+\end{equation}
+
+\begin{lemma}[Moment identities]\label{lem:endpoints}
+For $y>0$,
+\begin{equation}\label{eq:A-H}
+A_{2j}(y)=-\frac{H_{2j}'(\frac12-y)}{y}.
+\end{equation}
+The continuous endpoint values are
+\begin{equation}\label{eq:endpoints}
+A_{2j}(0)=H_{2j}''\!\left(\frac12\right),
+\qquad
+A_{2j}\!\left(\frac12\right)=-2H_{2j}'(0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Analytic continuation of \eqref{eq:fourier} gives
+\[
+\xi(s)=\int_{\R}\Phi(u)e^{(s-1/2)u}\dd u.
+\]
+Expanding $(u-v)^{2j}$ proves
+\[
+H_{2j}(s)=\iint_{\R^2}
+e^{(s-1/2)p}q^{2j}\Phi(u)\Phi(v)\dd u\dd v.
+\]
+Equivalently, Leibniz differentiation gives
+\[
+\left.\partial_x^{2j}P(s,x)\right|_{x=0}=(-1)^jH_{2j}(s).
+\]
+Since $C_y=-P_s/y$, equations \eqref{eq:C-derivatives} and
+\eqref{eq:A-H} follow.  The functional equation implies
+\[
+H_{2j}(1-s)=H_{2j}(s),
+\qquad H_{2j}'(1/2)=0.
+\]
+Taylor expansion at $1/2$ gives the first endpoint formula; substituting
+$y=1/2$ gives the second.
+\end{proof}
+
+\begin{lemma}[Strict raw-moment monotonicity]\label{lem:monotonicity}
+For every $j\geq0$,
+\[
+0\leq y_1<y_2\leq\frac12
+\quad\Longrightarrow\quad
+A_{2j}(y_1)<A_{2j}(y_2).
+\]
+Consequently, with $m_{2j}(y)=A_{2j}(y)/A_0(y)$,
+\begin{equation}\label{eq:cross-bounds}
+\frac{A_{2j}(0)}{A_0(1/2)}
+<m_{2j}(y)<
+\frac{A_{2j}(1/2)}{A_0(0)}
+\end{equation}
+for every $y\in[0,1/2]$ and $j\geq1$.
+\end{lemma}
+
+\begin{proof}
+For $p\neq0$,
+\[
+\sinhc(yp)=\sum_{r=0}^{\infty}
+\frac{y^{2r}p^{2r}}{(2r+1)!}
+\]
+is strictly increasing for $y\geq0$.  The remaining factor in
+\eqref{eq:A} is nonnegative and is positive away from measure-zero lines.
+This proves strict monotonicity.  Applying the endpoint bounds separately to
+the numerator and denominator gives \eqref{eq:cross-bounds}.  Equality would
+require the numerator and denominator to attain opposite endpoints at the
+same value of $y$, so both inequalities are strict even when $y$ is an
+endpoint.
+\end{proof}
+
+\section{The degree-ten lower polynomial}
+
+\begin{lemma}[Global cosine minorant]\label{lem:cosine}
+For every real $r\neq0$,
+\begin{equation}\label{eq:T10}
+\cos r>
+T_{10}(r):=
+1-\frac{r^2}{2!}+\frac{r^4}{4!}-\frac{r^6}{6!}
++\frac{r^8}{8!}-\frac{r^{10}}{10!}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For $g=\cos-T_{10}$,
+\[
+g^{(10)}(r)=1-\cos r\geq0,
+\]
+and $g^{(k)}(0)=0$ for $0\leq k\leq9$.  Repeated integration proves
+$g(r)\geq0$ for $r\geq0$.  The inequality is strict for $r>0$ because
+$1-\cos r$ does not vanish identically on any interval $(0,r)$.  Evenness
+handles negative $r$.
+\end{proof}
+
+For the five moments used below, set
+\begin{equation}\label{eq:B}
+\begin{aligned}
+B_2&=\frac{A_2(1/2)}{A_0(0)},&
+B_4&=\frac{A_4(0)}{A_0(1/2)},\\
+B_6&=\frac{A_6(1/2)}{A_0(0)},&
+B_8&=\frac{A_8(0)}{A_0(1/2)},\\
+B_{10}&=\frac{A_{10}(1/2)}{A_0(0)}.
+\end{aligned}
+\end{equation}
+Define
+\begin{equation}\label{eq:Ptheta}
+P_\theta(x)=
+1-\frac{B_2x^2}{2!}+\frac{B_4x^4}{4!}
+-\frac{B_6x^6}{6!}+\frac{B_8x^8}{8!}
+-\frac{B_{10}x^{10}}{10!}.
+\end{equation}
+
+\begin{proposition}[Uniform polynomial lower bound]\label{prop:minorant}
+For $0\leq y\leq\frac12$ and $x\neq0$,
+\begin{equation}\label{eq:main-minorant}
+\frac{C_y(x)}{A_0(y)}>P_\theta(x).
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Normalize $W_y\dd u\dd v$ by $A_0(y)$ and apply Lemma
+\ref{lem:cosine}.  Strictness holds because $xq\neq0$ on a set of positive
+measure.  We obtain
+\[
+\frac{C_y(x)}{A_0(y)}>
+1-\frac{m_2(y)x^2}{2!}+\frac{m_4(y)x^4}{4!}
+-\frac{m_6(y)x^6}{6!}+\frac{m_8(y)x^8}{8!}
+-\frac{m_{10}(y)x^{10}}{10!}.
+\]
+For negative terms, use the upper bounds in \eqref{eq:cross-bounds}; for
+positive terms, use the lower bounds.  This gives \eqref{eq:main-minorant}.
+\end{proof}
+
+\section{Certified endpoint arithmetic}
+
+The certificate evaluates \eqref{eq:endpoints} from Taylor balls for
+\begin{equation}\label{eq:xi-computational}
+\xi(s)=(s-1)\pi^{-s/2}\Gamma(1+s/2)\zeta(s),
+\end{equation}
+which is algebraically identical to \eqref{eq:xi-definition} and analytic at
+both centers $0$ and $1/2$.
+
+Table \ref{tab:moments} lists ball centers.  At 269-bit Arb precision, the
+largest radius among the twelve displayed values is $1.37\cdot10^{-67}$.
+
+\begin{table}[ht]
+\centering
+\caption{Certified endpoint-moment ball centers.}
+\label{tab:moments}
+\small
+\begin{tabular}{@{}c>{\raggedleft\arraybackslash}p{0.34\textwidth}>{\raggedleft\arraybackslash}p{0.34\textwidth}@{}}
+\toprule
+Moment & $A_{2j}(0)$ & $A_{2j}(1/2)$ \\
+\midrule
+$A_0$ & 0.02283966166888743667469247 & 0.02309570896612103381431025 \\
+$A_2$ & 0.001890366586781360982949785 & 0.001909616896683607096775872 \\
+$A_4$ & 0.000459720156209605774158694 & 0.000464013763611390134012507 \\
+$A_6$ & 0.000182390894103604245533460 & 0.000183966337058884295480848 \\
+$A_8$ & 0.000099156363571899705593806 & 0.000099954209940825929544209 \\
+$A_{10}$ & 0.000067852553023503413540728 & 0.000068364291172414501807343 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The resulting coefficient balls have centers
+\begin{equation}\label{eq:B-values}
+\begin{aligned}
+B_2&=0.0836096840823574320891615416\ldots,\\
+B_4&=0.0199050029979147510756695686\ldots,\\
+B_6&=0.00805468748731450212309766654\ldots,\\
+B_8&=0.00429328078723851344898443484\ldots,\\
+B_{10}&=0.00299322696472082444610981628\ldots.
+\end{aligned}
+\end{equation}
+
+Put $Q(t)=P_\theta(\sqrt t)$.  On $0\leq t\leq51$, the degree-four
+Bernstein coefficient balls for $Q'$ have centers
+\begin{equation}\label{eq:bernstein}
+\begin{split}
+&-0.0418048420411787160,\quad
+-0.0206557763558942930,\quad
+-0.0140554899445716895,\\
+&-0.00787928068151705499,\quad
+-0.0159039318562651082.
+\end{split}
+\end{equation}
+Every complete ball is negative.  Since Bernstein basis functions are
+nonnegative on the unit interval, $Q'(t)<0$ for $0\leq t\leq51$.
+
+For $t=51+r$, write
+\[
+Q'(51+r)=\sum_{j=0}^{4}c_jr^j.
+\]
+The coefficient-ball centers are
+\begin{equation}\label{eq:tail-coefficients}
+\begin{aligned}
+c_0&=-0.0159039318562651082,\\
+c_1&=-0.000629384405862592411,\\
+c_2&=-0.0000327586169268804792,\\
+c_3&=-0.000000415429458942178156,\\
+c_4&=-0.000000004124265548832706.
+\end{aligned}
+\end{equation}
+Again every complete ball is negative, so $Q'(t)<0$ for $t\geq51$.  Hence
+\begin{equation}\label{eq:Q-monotone}
+Q'(t)<0\qquad(t\geq0).
+\end{equation}
+
+The exact rational evaluation points satisfy the certified inequalities
+\begin{align}
+P_\theta(7.0362433)&>3.7223537277\cdot10^{-9}>0,
+\label{eq:root-lower}\\
+P_\theta(7.0362434)&<-1.7438217651\cdot10^{-8}<0.
+\label{eq:root-upper}
+\end{align}
+Because $Q(0)=1$, \eqref{eq:Q-monotone} holds, and the leading coefficient
+of $Q$ is negative, $P_\theta$ has exactly one positive zero.  Denote it by
+$R_{10}$.  Then
+\begin{equation}\label{eq:R10}
+7.0362433<R_{10}<7.0362434,
+\qquad
+R_{10}=7.03624331759098920168\ldots.
+\end{equation}
+
+\begin{theorem}[Certified finite positivity band]\label{thm:main}
+For every $0\leq y\leq\frac12$,
+\begin{equation}\label{eq:finite-band}
+C_y(x)>0\qquad(|x|\leq R_{10}).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+For $0<|x|<R_{10}$, Proposition \ref{prop:minorant} and
+$P_\theta(x)>0$ prove the claim.  At $|x|=R_{10}$, strictness in
+\eqref{eq:main-minorant} gives
+\[
+\frac{C_y(R_{10})}{A_0(y)}>P_\theta(R_{10})=0.
+\]
+At $x=0$, $C_y(0)=A_0(y)>0$.  Evenness in $x$ completes the proof.
+\end{proof}
+
+\section{Finite zero consequence}
+
+\begin{corollary}\label{cor:zeros}
+If $\rho$ is a nontrivial zero of $\zeta$ with
+$|\operatorname{Im}\rho|\leq R_{10}$, then
+\[
+\operatorname{Re}\rho=\frac12.
+\]
+\end{corollary}
+
+\begin{proof}
+At a zero of $\Xi$, the two functions $E$ and $E^{\#}$ have the same
+modulus, so the left side of \eqref{eq:defect} vanishes.  If
+$\rho=\beta+i\gamma$ with $\beta<1/2$, then
+\[
+z=\gamma+i(1/2-\beta)
+\]
+satisfies $\Xi(z)=\xi(\rho)=0$ and $0<\operatorname{Im}z<1/2$.  For
+$|\gamma|\leq R_{10}$, Theorem \ref{thm:main} and \eqref{eq:defect}
+make the defect positive, a contradiction.  If $\beta>1/2$, the functional
+equation and conjugation give the zero $1-\bar\rho$, with the same ordinate
+and real part below $1/2$.
+\end{proof}
+
+At a real zero $x$ of $\Xi$, equation \eqref{eq:C0} becomes
+$C_0(x)=2\Xi'(x)^2$.  Thus Theorem \ref{thm:main} also implies simplicity
+of any real $\Xi$-zero in the finite interval, without assuming simplicity.
+
+\section{Failure for a generic positive kernel}
+
+The proof uses positivity and decay in its analytic steps, but the numerical
+moment profile is specific to the Riemann kernel.  Consider
+\begin{equation}\label{eq:counterexample}
+\Phi_\varepsilon(u)=
+\psi_\varepsilon(u-1)+\psi_\varepsilon(u+1)
++\frac{13}{6}\psi_\varepsilon(u),
+\qquad
+\psi_\varepsilon(u)=e^{-2\cosh(u/\varepsilon)}.
+\end{equation}
+This kernel is smooth, positive, even, and double-exponentially decreasing.
+Its Fourier transform factors as
+\begin{equation}\label{eq:counterexample-FT}
+\widehat{\Phi_\varepsilon}(z)=
+2\varepsilon K_{i\varepsilon z}(2)
+\left(2\cos z+\frac{13}{6}\right).
+\end{equation}
+With $\lambda=\log(3/2)$, one has $2\cosh\lambda=13/6$, so
+\[
+z=(2k+1)\pi\pm i\lambda
+\]
+are exact nonreal zeros and $0<\lambda<1/2$.
+
+The failure appears already in the normalized moments.  Let
+$a=13/6$ and let $m_{2j}^{(\varepsilon)}(y)$ denote the moments formed from
+\eqref{eq:counterexample}.  Scaling each of the three bumps and applying
+dominated convergence gives, for $j\geq1$,
+\[
+\frac{A_{2j}^{(\varepsilon)}(y)}{\varepsilon^2M^2}
+\longrightarrow 4a\sinhc y,
+\qquad
+M=\int_{\R}e^{-2\cosh t}\dd t,
+\]
+while
+\[
+\frac{A_0^{(\varepsilon)}(y)}{\varepsilon^2M^2}
+\longrightarrow 8\sinhc(2y)+4a\sinhc y.
+\]
+Therefore
+\begin{equation}\label{eq:counterexample-moments}
+\lim_{\varepsilon\to0}m_{2j}^{(\varepsilon)}(y)
+=\frac{a}{2\cosh y+a}.
+\end{equation}
+At $y=\lambda$, this limit is $1/2$, which violates the Riemann-kernel
+bound $m_2(y)<B_2=0.0836096840\ldots$ for all small enough $\varepsilon$.
+At $y=0$, the limit is $13/25$.
+
+For $0<\varepsilon\leq1/4$, the same family also satisfies
+\[
+\Phi_\varepsilon(1/2)^2<
+\Phi_\varepsilon(0)\Phi_\varepsilon(1),
+\]
+so it is not log-concave.  Neither positivity nor rapid decay supplies the
+endpoint ratios in \eqref{eq:B}.
+
+\section{The all-orders boundary}
+
+The degree-ten theorem does not control the large-frequency sign of $C_y$.
+The exact Taylor hierarchy makes the obstruction precise.  For $m\geq0$ set
+\begin{equation}\label{eq:Sm}
+S_m(y,x)=\sum_{j=0}^{2m+1}(-1)^j
+\frac{m_{2j}(y)x^{2j}}{(2j)!}.
+\end{equation}
+The global Taylor inequality
+$T_{4m+2}(r)<\cos r$ for $r\neq0$ gives
+\begin{equation}\label{eq:Sm-lower}
+S_m(y,x)<\frac{C_y(x)}{A_0(y)}
+\qquad(x\neq0).
+\end{equation}
+
+\begin{proposition}[Exact hierarchy]\label{prop:exact-hierarchy}
+Fix $\varepsilon>0$ and $R<\infty$.  Then $S_m$ converges uniformly to
+$C_y(x)/A_0(y)$ on
+\[
+[\varepsilon,1/2]\times[-R,R].
+\]
+Moreover, $C_y(x)>0$ on this rectangle if and only if some $S_m$ is
+uniformly positive there.
+\end{proposition}
+
+\begin{proof}
+Estimate \eqref{eq:decay} gives a uniform exponential moment bound
+\[
+\sup_{\varepsilon\leq y\leq1/2}
+\int e^{R|q|}\frac{W_y(u,v)}{A_0(y)}\dd u\dd v<\infty.
+\]
+Dominated convergence for the cosine series gives uniform convergence.  If
+$C_y/A_0$ is positive on the compact rectangle, it has a positive minimum;
+uniform convergence makes every sufficiently high section positive.  The
+reverse implication follows from \eqref{eq:Sm-lower}, with the value at
+$x=0$ equal to $1$.
+\end{proof}
+
+Thus divergence of the positivity radii for the exact sections is equivalent
+to global open-strip positivity and supplies no weaker intermediate theorem.
+The cross-endpoint hierarchy is more restrictive.  For $\varepsilon\geq0$,
+define
+\[
+L_{2j}^{(\varepsilon)}=
+\frac{A_{2j}(\varepsilon)}{A_0(1/2)},
+\qquad
+U_{2j}^{(\varepsilon)}=
+\frac{A_{2j}(1/2)}{A_0(\varepsilon)},
+\]
+and
+\begin{equation}\label{eq:Phat}
+\widehat P_m^{(\varepsilon)}(x)=
+1+
+\sum_{\substack{1\leq j\leq2m+1\\ j\ \mathrm{even}}}
+L_{2j}^{(\varepsilon)}\frac{x^{2j}}{(2j)!}
+-
+\sum_{\substack{1\leq j\leq2m+1\\ j\ \mathrm{odd}}}
+U_{2j}^{(\varepsilon)}\frac{x^{2j}}{(2j)!}.
+\end{equation}
+Then
+\[
+\widehat P_m^{(\varepsilon)}(x)
+<S_m(y,x)<\frac{C_y(x)}{A_0(y)}
+\]
+for $x\neq0$ and $\varepsilon\leq y\leq1/2$.  Theorem
+\ref{thm:main} is the case $m=2$, $\varepsilon=0$.
+
+Let $\widehat R_m^{(\varepsilon)}$ be the initial positivity radius of
+\eqref{eq:Phat}.  The missing all-orders assertion is
+\begin{equation}\label{eq:gap}
+\sup_m\widehat R_m^{(\varepsilon)}=\infty
+\qquad\text{for every }\varepsilon>0.
+\end{equation}
+Equation \eqref{eq:gap} would imply the Riemann Hypothesis.  The reverse
+implication is not established: the lower polynomial combines pessimistic
+numerator and denominator endpoints attained at different $y$-values.
+Therefore \eqref{eq:gap} may be stronger than RH.  The present endpoint
+identities do not provide the all-orders asymptotics needed to prove it.
+
+\section{Reproducibility and certificate scope}
+
+The public certificate evaluates Taylor balls for \eqref{eq:xi-computational}
+at $0$ and $1/2$, forms \eqref{eq:H}, and extracts derivatives through order
+$12$.  It uses \texttt{python-flint} 0.9.0, FLINT 3.6.0, 269-bit Arb precision, and a
+formal-series cap of 18.  The cap exceeds the thirteen coefficients required
+through degree 12.
+
+The finite proof obligations are:
+\begin{enumerate}
+\item the twelve endpoint moment balls;
+\item the five cross-endpoint ratios;
+\item the five Bernstein signs in \eqref{eq:bernstein};
+\item the five shifted-tail signs in \eqref{eq:tail-coefficients};
+\item the two rational root-bracket signs.
+\end{enumerate}
+Arb implements midpoint-radius ball arithmetic with outward enclosures, so a
+strict comparison succeeds only when the entire output ball lies on the
+claimed side.  The computation uses no quadrature and no list of zeta zeros.
+The analytic steps linking its finite values to $C_y$ are Lemmas
+\ref{lem:defect}--\ref{lem:cosine} and Proposition \ref{prop:minorant}.
+
+The repository records the exact dependency version, output, and SHA-256
+checksums.  The command is
+\begin{verbatim}
+uv run --with python-flint==0.9.0 \
+  python code/theta_moment_certificate.py
+\end{verbatim}
+Python optimization must remain disabled because program assertions encode
+the sign obligations.
+
+\section{Conclusion}
+
+Endpoint derivatives of $\xi$ at $0$ and $1/2$, strict monotonicity of raw
+moments, and a global cosine minorant produce an explicit lower polynomial for
+$C_y/A_0$.  Arb certification of its coefficients and root proves the closed
+finite band in Theorem \ref{thm:main}.  The argument supplies a reproducible
+local validation of the endpoint-moment method.  It does not control the
+all-orders radii in \eqref{eq:gap}, which remain the first unresolved step
+toward unbounded open-strip positivity.
+
+\section*{Disclosure and licensing}
+
+OpenAI Codex assisted with document preparation, computational orchestration,
+and consistency checks.  The named author retains responsibility for the
+mathematical claims and the released artifacts.  The paper and its LaTeX
+source are licensed under CC BY-SA 4.0.  Repository software is licensed under
+AGPL-3.0-only.
+
+\begin{thebibliography}{99}
+
+\bibitem{C2015}
+G. Csordas,
+\emph{Fourier transforms of positive definite kernels and the Riemann
+$\xi$-function},
+Comput. Methods Funct. Theory (2015),
+\href{https://doi.org/10.1007/s40315-014-0105-8}{doi:10.1007/s40315-014-0105-8}.
+
+\bibitem{CC2013}
+M. W. Coffey and G. Csordas,
+\emph{On the log-concavity of a Jacobi theta function},
+Math. Comp. \textbf{82} (2013), 2265--2272,
+\href{https://doi.org/10.1090/S0025-5718-2013-02681-6}{doi:10.1090/S0025-5718-2013-02681-6}.
+
+\bibitem{CNV1986}
+G. Csordas, T. S. Norfolk, and R. S. Varga,
+\emph{The Riemann hypothesis and the Tur\'an inequalities},
+Trans. Amer. Math. Soc. \textbf{296} (1986), 521--541,
+\href{https://doi.org/10.1090/S0002-9947-1986-0846596-4}{doi:10.1090/S0002-9947-1986-0846596-4}.
+
+\bibitem{CV1988}
+G. Csordas and R. S. Varga,
+\emph{Moment inequalities and the Riemann hypothesis},
+Constr. Approx. \textbf{4} (1988), 175--198,
+\href{https://doi.org/10.1007/BF02075457}{doi:10.1007/BF02075457}.
+
+\bibitem{CV1989}
+G. Csordas and R. S. Varga,
+\emph{Fourier transforms and the Hermite--Biehler theorem},
+Proc. Amer. Math. Soc. \textbf{107} (1989), 645--652,
+\href{https://doi.org/10.1090/S0002-9939-1989-0982401-1}{doi:10.1090/S0002-9939-1989-0982401-1}.
+
+\bibitem{CV1990}
+G. Csordas and R. S. Varga,
+\emph{Necessary and sufficient conditions and the Riemann hypothesis},
+Adv. in Appl. Math. \textbf{11} (1990), 328--357,
+\href{https://doi.org/10.1016/0196-8858(90)90013-O}{doi:10.1016/0196-8858(90)90013-O}.
+
+\bibitem{PT2021}
+D. J. Platt and T. S. Trudgian,
+\emph{The Riemann hypothesis is true up to $3\cdot10^{12}$},
+Bull. Lond. Math. Soc. \textbf{53} (2021), 792--797,
+\href{https://doi.org/10.1112/blms.12460}{doi:10.1112/blms.12460}.
+
+\end{thebibliography}
+
+\end{document}

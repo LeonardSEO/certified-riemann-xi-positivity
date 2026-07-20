@@ -1,0 +1,23 @@
+.DS_Store
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# LaTeX intermediates
+paper/build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Local ChatGPT-project material that is not part of the publication
+AGENTS.md
+sources/
+tmp/
+round5_interval_certificate.py

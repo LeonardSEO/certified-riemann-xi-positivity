@@ -1,0 +1,35 @@
+Certified Finite Positivity Bands for a Riemann Xi-Defect Kernel
+Copyright (c) 2026 Leonard van Hemert
+
+LICENSE MAP
+
+1. Software
+
+   The files under `code/`, `.github/`, and software-oriented scripts in this
+   repository are licensed under the GNU Affero General Public License,
+   version 3 only (SPDX: AGPL-3.0-only). The complete license text is in
+   `LICENSE`.
+
+2. Paper
+
+   The files under `paper/`, including the article text, LaTeX source, and
+   original figures, are licensed under Creative Commons
+   Attribution-ShareAlike 4.0 International (SPDX: CC-BY-SA-4.0). The license
+   notice and official legal-code link are in
+   `LICENSES/CC-BY-SA-4.0.txt`.
+
+3. Research facts
+
+   Copyright licenses govern the expression and software in this repository.
+   They do not create exclusive ownership of mathematical facts, identities,
+   methods, or theorems.
+
+4. Attribution
+
+   Cite the article using `CITATION.cff`. Mark modified versions and preserve
+   the applicable copyright and license notices.
+
+SCOPE OF THE RESULT
+
+The repository proves a certified finite positivity band. It does not claim a
+proof of the Riemann Hypothesis or a new record for finite-height verification.
