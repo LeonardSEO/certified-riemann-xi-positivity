@@ -41,11 +41,11 @@
 Let $\Xi(z)=\xi(\frac12+iz)$ and let $\Phi$ denote the positive even
 Riemann theta kernel in its full-line Fourier representation.  We study the
 two-variable cosine transform
-\[
-C_y(x)=\iint_{\R^2}(u+v)^2\sinhc(y(u+v))\Phi(u)\Phi(v)
-                 \cos(x(u-v))\dd u\dd v,
+\begin{align*}
+C_y(x)&=\iint_{\R^2}(u+v)^2\sinhc(y(u+v))\Phi(u)\Phi(v)\\
+&\hspace{5em}{}\times\cos(x(u-v))\dd u\dd v,
 \qquad 0\leq y\leq\tfrac12.
-\]
+\end{align*}
 The Hermite--Biehler defect of $E=\Xi+i\Xi'$ equals $2yC_y(x)$.  We derive
 exact endpoint formulas for the even moments of the positive measure defining
 $C_y$, bound the normalized moments by strict cross-endpoint ratios, and
@@ -371,8 +371,8 @@ largest radius among the twelve displayed values is $1.37\cdot10^{-67}$.
 \centering
 \caption{Certified endpoint-moment ball centers.}
 \label{tab:moments}
-\small
-\begin{tabular}{@{}c>{\raggedleft\arraybackslash}p{0.34\textwidth}>{\raggedleft\arraybackslash}p{0.34\textwidth}@{}}
+\scriptsize
+\begin{tabular}{@{}c>{\raggedleft\arraybackslash}p{0.37\textwidth}>{\raggedleft\arraybackslash}p{0.37\textwidth}@{}}
 \toprule
 Moment & $A_{2j}(0)$ & $A_{2j}(1/2)$ \\
 \midrule
@@ -402,9 +402,10 @@ Bernstein coefficient balls for $Q'$ have centers
 \begin{equation}\label{eq:bernstein}
 \begin{split}
 &-0.0418048420411787160,\quad
--0.0206557763558942930,\quad
--0.0140554899445716895,\\
-&-0.00787928068151705499,\quad
+-0.0206557763558942930,\\
+&-0.0140554899445716895,\quad
+-0.00787928068151705499,\\
+&
 -0.0159039318562651082.
 \end{split}
 \end{equation}
