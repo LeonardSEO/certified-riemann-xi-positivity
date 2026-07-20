@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "research/high_degree/high_degree_endpoint_study.py", line 250, in <module>
+    main()
+  File "research/high_degree/high_degree_endpoint_study.py", line 221, in main
+    half = moments(Fraction(1, 2), max_j)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "research/high_degree/high_degree_endpoint_study.py", line 76, in moments
+    raise ArithmeticError(f"A_{n}({epsilon}) not certified positive: {a}")
+ArithmeticError: A_120(1/2) not certified positive: [+/- 8.40e+21]
+        0.25 real         0.15 user         0.04 sys
+            37109760  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+                6027  page reclaims
+                  42  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                   1  messages sent
+                   1  messages received
+                   1  signals received
+                  17  voluntary context switches
+                 297  involuntary context switches
+           470186555  instructions retired
+           149590433  cycles elapsed
+            16253480  peak memory footprint

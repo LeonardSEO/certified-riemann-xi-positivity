@@ -57,3 +57,49 @@ jobs:
           name: certified-riemann-xi-positivity-paper
           path: paper/main.pdf
           if-no-files-found: error
+
+  higher-degree-research:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pinned interval backend
+        run: python -m pip install python-flint==0.9.0
+
+      - name: Verify research artifact hashes
+        run: |
+          sha256sum --check research/SHA256SUMS
+          cd research/high_degree
+          sha256sum --check SHA256SUMS
+
+      - name: Reconstruct the degree-10 certificate independently
+        run: |
+          python research/cleanroom/independent_xi_moment_arb.py > cleanroom-current.out
+          diff --unified research/cleanroom/independent_xi_moment_arb.out cleanroom-current.out
+
+      - name: Verify all higher-degree result records
+        run: python research/high_degree/verify_results.py
+
+      - name: Run the independent adversarial codebase
+        env:
+          PYTHONPATH: research/adversarial
+        run: python -m unittest -v research/adversarial/test_adversarial.py
+
+      - name: Recompute the global-minorant certificate
+        run: |
+          python research/minorants/explore_minorants.py > minorants-current.out
+          diff --unified research/minorants/certificate.out minorants-current.out
+
+      - name: Recompute the partition-moment certificate
+        run: |
+          python research/partition_monotonicity/partition_moment_certificate_20260720.py \
+            --cells 1000 --moments 6 --dps 80 | \
+            tee partition-current.out
+          grep -Fx "ALL PARTITION MOMENT CERTIFICATE ASSERTIONS PASSED" partition-current.out

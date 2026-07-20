@@ -75,6 +75,16 @@ ALL CERTIFICATE ASSERTIONS PASSED
 
 Do not run Python with `-O`; assertions form part of the certificate.
 
+## Higher-degree investigation
+
+The follow-up investigation is in [`research/`](research/). Its principal
+classification is **E — cross-endpoint route blocked**: for every fixed
+`0 <= epsilon < 1/2`, the stated cross-endpoint radii have a finite supremum.
+The proof, all 175 certified higher-degree cases through degree 202, the
+independent clean-room and adversarial implementations, partition results,
+minorant experiments, graph, failures, and reproduction commands are indexed
+in [`research/README.md`](research/README.md). The paper itself is unchanged.
+
 ## Licensing
 
 - Software and automation: GNU AGPL v3.0 only. See [`LICENSE`](LICENSE).
