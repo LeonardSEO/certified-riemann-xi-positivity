@@ -10,22 +10,22 @@ obstruction to scaling its fixed cross-endpoint hierarchy.
 Let
 
 $$
-\Xi(z)=\xi\!\left(\frac12+iz\right)
-      =\int_{\mathbb R}\Phi(u)e^{izu}\,du
+\Xi(z)=\xi\left(\frac12+iz\right)
+      =\int_{\mathbb R}\Phi(u)e^{izu}\mathrm{d}u
 $$
 
-and, for `0 <= y <= 1/2`, define
+and, for $0 \le y \le \tfrac12$, define
 
 $$
 C_y(x)=\iint_{\mathbb R^2}
-(u+v)^2\operatorname{sinhc}(y(u+v))
-\Phi(u)\Phi(v)\cos(x(u-v))\,du\,dv.
+(u+v)^2\mathrm{sinhc}\left(y(u+v)\right)
+\Phi(u)\Phi(v)\cos(x(u-v))\mathrm{d}u\mathrm{d}v.
 $$
 
 The degree-10 endpoint-moment certificate proves
 
 $$
-C_y(x)>0
+C_y(x)\gt 0
 \qquad
 \left(0\le y\le\frac12,\ |x|\le R_{10}\right),
 $$
@@ -33,19 +33,19 @@ $$
 where
 
 $$
-7.0362433<R_{10}<7.0362434.
+7.0362433\lt R_{10}\lt 7.0362434.
 $$
 
 The proof does not enumerate zeros. It combines exact endpoint formulas for
 Riemann-kernel moments, strict raw-moment monotonicity, a global degree-10
 minorant for cosine, and outward-rounded Arb evaluation.
 
-The same paper proves that, for every fixed `0 <= epsilon < 1/2`, the initial
+The same paper proves that, for every fixed $0\le\varepsilon\lt\tfrac12$, the initial
 positivity radii of the specified cross-endpoint polynomials satisfy
 
-```text
-sup_m Rhat_m^(epsilon) < infinity.
-```
+$$
+\sup_{m\ge 0}\widehat R_m^{(\varepsilon)}\lt\infty.
+$$
 
 The second theorem is analytic and independent of the finite computations.
 The polynomial sections converge locally uniformly to an exact mixed
